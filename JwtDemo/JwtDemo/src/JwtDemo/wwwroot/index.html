@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demo đăng nhập, đăng ký và xác thực JWT theo quyền user/admin.">
+  <title>Demo xác thực JWT</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="page-header"><h1>Demo xác thực JWT</h1><p>Đăng nhập → nhận JWT → gọi chức năng → server cho phép hoặc từ chối</p></header>
+  <main>
+    <section class="card" aria-labelledby="login-title">
+      <div class="section-title"><span class="step">1</span><h2 id="login-title">Đăng nhập / Đăng ký</h2></div>
+      <form id="login-form">
+        <div class="input-row"><div><label for="username">Tài khoản</label><input id="username" name="username" type="text" autocomplete="username" maxlength="80" placeholder="Nhập tài khoản" required></div><div><label for="password">Mật khẩu</label><div class="password-field"><input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" placeholder="Nhập mật khẩu" required><button id="toggle-password" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">Hiện</button></div></div></div>
+        <div class="actions"><button id="login-button" class="primary" type="submit">Đăng nhập</button><button id="register-button" type="button">Đăng ký</button><button id="logout" type="button" disabled>Đăng xuất</button></div>
+      </form>
+      <p id="login-message" class="message" role="status" aria-live="polite">Để đăng ký: nhập tài khoản mới và mật khẩu từ 6 ký tự, rồi bấm Đăng ký.</p>
+      <div class="session-status"><span class="status-dot" id="session-dot"></span><strong id="session-status">Bạn chưa đăng nhập</strong></div><p id="session-details" class="small-note">Chưa có phiên đăng nhập.</p>
+      <div class="demo-switch"><span>Tài khoản mẫu:</span><button type="button" id="demo-user" aria-pressed="false">user / 123456</button><button type="button" id="demo-admin" aria-pressed="false">admin / 123456</button></div>
+      <p class="small-note">Tài khoản tự đăng ký luôn có quyền Người dùng. Tên tài khoản dài 3–30 ký tự, không có dấu hoặc khoảng trắng.</p>
+    </section>
+
+    <section class="card" aria-labelledby="features-title"><div class="section-title"><span class="step">2</span><h2 id="features-title">Gọi API kèm JWT</h2></div><div class="api-actions"><button type="button" id="call-public">API Public</button><button type="button" id="call-me">API User</button><button type="button" id="call-admin">API Admin</button></div><p class="small-note">Public: ai cũng gọi được · User: cần đăng nhập · Admin: chỉ quản trị viên, trả danh sách tài khoản.</p></section>
+
+    <section class="card result-card" aria-labelledby="result-heading"><div class="section-title"><span class="step">3</span><h2 id="result-heading">Kết quả từ server</h2></div><div id="result-box" class="result-box" role="status" aria-live="polite"><span class="http-status" id="http-status">Chưa thực hiện</span><h3 id="result-title">Chưa có kết quả</h3><p id="result-message">Đăng nhập, đăng ký hoặc bấm một nút API ở trên.</p></div><div id="profile-info" class="profile-info" hidden><dl><div><dt>Họ và tên</dt><dd id="profile-name"></dd></div><div><dt>Tài khoản</dt><dd id="profile-username"></dd></div><div><dt>Quyền</dt><dd id="profile-role"></dd></div></dl></div><div class="table-scroll" id="members-table-wrap" hidden><table><thead><tr><th scope="col">Tài khoản</th><th scope="col">Họ và tên</th><th scope="col">Quyền</th></tr></thead><tbody id="members-body"></tbody></table></div></section>
+
+    <section class="card" aria-labelledby="jwt-title"><h2 id="jwt-title">JWT hiện tại</h2><p class="small-note">Token do server cấp sau khi đăng nhập thành công.</p><pre id="current-token" tabindex="0">Chưa có JWT. Hãy đăng nhập.</pre><dl class="token-details"><div><dt>Tên tài khoản</dt><dd id="token-username">—</dd></div><div><dt>Quyền</dt><dd id="token-role">—</dd></div><div><dt>Hết hạn lúc</dt><dd id="token-expiry">—</dd></div></dl></section>
+
+    <details class="technical" id="technical-details"><summary>Xem yêu cầu và JSON trả về (dùng khi thuyết minh)</summary><div class="technical-content"><p id="request-line">Chưa có yêu cầu.</p><pre id="response-output" tabindex="0">{"message":"Chưa có thao tác."}</pre><p class="small-note">API cần đăng nhập gửi header <code>Authorization: Bearer &lt;token&gt;</code>. Mã 200: được phép; 401: chưa đăng nhập hoặc token sai/hết hạn; 403: không đủ quyền.</p></div></details>
+    <footer>Tài khoản mẫu chỉ dùng thử nghiệm. Đăng xuất hoặc tải lại trang sẽ xóa JWT trên giao diện.</footer>
+  </main>
+</body>
+</html>

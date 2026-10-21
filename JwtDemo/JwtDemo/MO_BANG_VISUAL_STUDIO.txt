@@ -1,0 +1,33 @@
+JWT LAB - GIAO DIEN DON GIAN - MO NHANH TREN WINDOWS
+
+1. Giai nen toan bo ZIP vao mot thu muc.
+2. Cai Visual Studio 2022 (17.8+) voi workload ASP.NET and web development,
+   cung .NET 8 SDK. Lan dau can Internet de restore NuGet.
+3. Mo JwtDemo.sln.
+4. Chon project JwtDemo lam Startup Project, chon profile JwtDemo.
+5. Nhan F5 (hoac Ctrl+F5).
+6. Mo http://localhost:5188 neu trinh duyet chua tu mo.
+
+KHONG CAN CAI SQL SERVER.
+Database SQLite, khoa JWT ngau nhien va tai khoan demo tu tao o Development.
+
+Tai khoan thu nghiem:
+user  / 123456
+admin / 123456
+
+CHUC NANG THEO ANH:
+- Dang nhap, Dang ky, Dang xuat.
+- API Public: ai cung goi duoc, khong can dang nhap.
+- API User: can dang nhap, ca user va admin deu dung duoc.
+- API Admin: chi admin duoc xem danh sach tai khoan trong database.
+- Ket qua 200/401/403 va khung JWT, ten tai khoan, quyen, han dang nhap.
+
+DANG KY: nhap ten moi (3-30 ky tu, khong dau/khoang trang), mat khau >=6 ky tu.
+Bam Dang ky, sau do bam Dang nhap. Tai khoan moi luon co quyen user.
+
+Neu dung database cu: dung server va chay lai o Development voi SEED_DEMO=true.
+Seed se cap nhat mat khau ca user/admin thanh 123456, khong can xoa database.
+
+Xem README.md, VIDEO_SCRIPT.md va TEST_RESULTS.md de biet chi tiet.
+Luu y: noi tao file chua co .NET SDK, backend chua duoc build/chay xac minh.
+Can build va kiem thu tren may ban truoc khi quay video/nop bai.
